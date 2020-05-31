@@ -40,23 +40,6 @@ npm run dev
 
 ### Что происходит в данном примере
 
-В данном примере мы обьявили переменную title и задали ей тип string
+В данном примере мы знакомимся с простыми типами `boolean` и `number`
 
-```typescript
-let title: string = "Anton";
-
-console.log(`Hello ${title}`);
-```
-
-Если мы захотим переназначить переменную, например, в boolean то получим ошибку
-
-```typescript
-let title: string = "Anton";
-title = true;
-
-console.log(`Hello ${title}`);
-```
-
-```bash
-index.ts:2:1 - error TS2322: Type 'true' is not assignable to type 'string'.
-```
+При присвоении переменной типа `boolean` мы не можем в будущем записывать туда строки и наоборот 
