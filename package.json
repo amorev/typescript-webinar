@@ -1,0 +1,19 @@
+{
+  "name": "typescript_intro",
+  "version": "1.0.0",
+  "description": "Materials for typescript vebinar",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc index.ts",
+    "start": "tsc index.ts && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.obvu.ru:otus/typescript.git"
+  },
+  "author": "Anton Morev",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "3.9.3"
+  }
+}
