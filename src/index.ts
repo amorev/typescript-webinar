@@ -1,5 +1,6 @@
-const fetcher = require('./lib/fetcher');
+import { Fetcher } from './lib/fetcher';
 
+const fetcher = new Fetcher();
 console.log('Script started');
 const people = fetcher.fetchPeople();
 people.forEach(el => {

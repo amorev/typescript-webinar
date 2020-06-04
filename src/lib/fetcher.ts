@@ -1,8 +1,8 @@
 import { City } from '../types/city';
 import { Person } from '../types/person';
 
-module.exports = {
-    fetchCities(): City[] {
+export class Fetcher {
+    public fetchCities(): City[] {
         return [
             {
                 id: 1,
@@ -13,11 +13,13 @@ module.exports = {
                 title: 'Moscow'
             }
         ];
-    },
-    fetchCityById(id) {
+    }
+
+    public fetchCityById(id: number): City {
         return this.fetchCities().find(e => e.id === id);
-    },
-    fetchPeople(): Person[] {
+    }
+
+    public fetchPeople(): Person[] {
         return [
             {
                 id: 1,
@@ -36,4 +38,4 @@ module.exports = {
             }
         ];
     }
-};
+}
