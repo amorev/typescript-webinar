@@ -1,4 +1,5 @@
 import { City } from '../types/city';
+import { Person } from '../types/person';
 
 module.exports = {
     fetchCities(): City[] {
@@ -16,7 +17,7 @@ module.exports = {
     fetchCityById(id) {
         return this.fetchCities().find(e => e.id === id);
     },
-    fetchPeople() {
+    fetchPeople(): Person[] {
         return [
             {
                 id: 1,
