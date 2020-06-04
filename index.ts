@@ -1,13 +1,29 @@
-const title: string = "Anton";
-const age: number = 25;
-console.log(`Hello ${title}, you are ${age} years old`);
-const secondUser: string = "Ivan";
-let olderThan25: boolean;
-const secondAge: number = 28;
-olderThan25 = secondAge > 25;
-if (olderThan25) {
-    console.log(`Hello ${secondUser}, you are older than 25`);
-} else {
-    console.log(`Hello ${secondUser}, you are NOT older than 25`);
-}
+let isDone: boolean = false;
+let decimal: number = 6;
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octal: number = 0o744;
+let color: string = "blue";
+color = "red";
 
+// Массивы
+let array1: number[] = [1, 2, 3];
+let array2: Array<number> = [1, 2, 3];
+
+let x: [string, number];
+x = ["hello", 10];
+
+enum Color {
+    Red,
+    Green,
+    Blue,
+}
+let c: Color = Color.Green;
+
+// Any
+let notSure: any = 4;
+notSure = "maybe a string instead";
+notSure = false; // okay, definitely a boolean
+let list: any[] = [1, true, "free"];
+
+list[1] = 100;
