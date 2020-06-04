@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
+    "alwaysStrict": true,
     "target": "es6",
     "module": "commonjs",
     "removeComments": true,
     "sourceMap": true,
     "allowJs": true,
     "esModuleInterop": true,
-    "outDir": "dist"
+    "strict": false,
+    "outDir": "dist",
+    "noUnusedLocals": true
   },
   "include": [
     "src/**/*"

@@ -1,6 +1,5 @@
 .idea
 node_modules
-index.js
 examples
 
 dist
