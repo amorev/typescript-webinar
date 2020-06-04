@@ -18,6 +18,7 @@
     "typescript": "3.9.3"
   },
   "devDependencies": {
+    "@types/node": "14.0.10",
     "nodemon": "2.0.4",
     "ts-node": "8.10.2"
   }
