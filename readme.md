@@ -40,14 +40,4 @@ npm run dev
 
 ### Что происходит в данном примере
 
-Ну и наконец мы создаем класс Fetcher который реализует логику получения данных. И вместо 
-
-```javascript
-const fetcher = require('./lib/fetcher');
-```
-
-Для подключения модуля мы создаем экземпляр класса Fetcher
-```typescript
-import { Fetcher } from './lib/fetcher';
-const fetcher = new Fetcher();
-``` 
+На данном этапе мы начинаем использовать namespace и сделали свой функционал проверки работоспособности сайтов
