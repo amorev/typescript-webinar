@@ -41,7 +41,8 @@ class HomeController extends BaseController {
     }
 
     @post('/post')
-    public postHandler() {
+    public postHandler(req, res) {
+        console.log(req.body);
         return {
             post: true
         };

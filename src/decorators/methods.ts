@@ -14,7 +14,7 @@ function httpMethodDecorator(method: string) {
                 method: method,
                 path: route,
                 handler: (req, res) => {
-                    res.json(descriptor.value());
+                    res.json(descriptor.value(req, res));
                 }
             });
             console.log(constructor);
