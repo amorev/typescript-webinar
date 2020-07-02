@@ -10,6 +10,7 @@ function httpMethodDecorator(method: string) {
             if (!constructor.routes) {
                 constructor.routes = [];
             }
+            console.log('constructor');
             constructor.routes.push({
                 method: method,
                 path: route,
@@ -17,8 +18,6 @@ function httpMethodDecorator(method: string) {
                     res.json(descriptor.value(req, res));
                 }
             });
-            console.log(constructor);
-            console.log({target, propertyKey, descriptor, constructor});
             return descriptor;
         };
     };

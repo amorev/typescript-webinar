@@ -41,7 +41,6 @@ export namespace Checker {
             if (!this.checkersMap[type]) {
                 return null;
             }
-            console.log({type});
             return new this.checkersMap[type];
         }
     }
