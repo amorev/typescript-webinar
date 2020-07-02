@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { BaseController } from './BaseController';
-import { get } from '../decorators/methods';
+import { get, post } from '../decorators/methods';
 
 
 class HomeController extends BaseController {
@@ -16,6 +16,7 @@ class HomeController extends BaseController {
 
     public initRoutes() {
         const routes = this.routes.concat((<any>this.constructor).routes);
+        console.log(routes);
         routes.forEach(route => {
             this.router[route.method](route.path, (req, res) => route.handler(req, res));
         });
@@ -37,6 +38,13 @@ class HomeController extends BaseController {
                 name: 'Ahmet'
             }
         ];
+    }
+
+    @post('/post')
+    public postHandler() {
+        return {
+            post: true
+        };
     }
 
     public indexSimple(req: Request, res: Response) {
