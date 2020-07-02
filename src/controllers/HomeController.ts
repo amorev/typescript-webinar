@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { BaseController } from './BaseController';
+import { get } from '../decorators/methods';
 
 
 class HomeController extends BaseController {
@@ -14,12 +15,13 @@ class HomeController extends BaseController {
     ];
 
     public initRoutes() {
-        const routes = this.routes;
+        const routes = this.routes.concat((<any>this.constructor).routes);
         routes.forEach(route => {
             this.router[route.method](route.path, (req, res) => route.handler(req, res));
         });
     }
 
+    @get('/test')
     public indexHandler() {
         return [
             {
