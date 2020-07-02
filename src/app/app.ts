@@ -21,7 +21,8 @@ class App {
 
     private routes(controllers: { forEach: (arg0: (controller: any) => void) => void; }) {
         controllers.forEach(controller => {
-            this.app.use('/', controller.router);
+            controller.initRoutes();
+            this.app.use(controller.path, controller.router);
         });
     }
 

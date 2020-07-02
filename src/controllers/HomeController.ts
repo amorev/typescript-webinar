@@ -1,21 +1,27 @@
-import * as express from 'express';
 import { Request, Response } from 'express';
+import { BaseController } from './BaseController';
 
-class HomeController {
+
+class HomeController extends BaseController {
     public path = '/';
-    public router = express.Router();
 
-    constructor() {
-        this.initRoutes();
-    }
+    public routes = [
+        {
+            method: 'get',
+            path: '/simple',
+            handler: (req, res) => this.indexSimple(req, res)
+        }
+    ];
 
     public initRoutes() {
-        this.router.get('/', this.index);
+        const routes = this.routes;
+        routes.forEach(route => {
+            this.router[route.method](route.path, (req, res) => route.handler(req, res));
+        });
     }
 
-    index = (req: Request, res: Response) => {
-
-        const users = [
+    public indexHandler() {
+        return [
             {
                 id: 1,
                 name: 'Ali'
@@ -29,8 +35,10 @@ class HomeController {
                 name: 'Ahmet'
             }
         ];
+    }
 
-        res.json({ users });
+    public indexSimple(req: Request, res: Response) {
+        res.json(this.indexHandler());
     };
 }
 
