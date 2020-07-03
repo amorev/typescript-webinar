@@ -40,27 +40,14 @@ npm run dev
 
 ### Что происходит в данном примере
 
-На этом этапе мы создали простой декоратор для логгирования. 
+На этом этапе мы начинаем знакомиться с дженериками. Старый код запуска сервера мы перенесли в index-old (он нам еще понадобится). 
 
-```typescript
-export function logger(category: string) {
-    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-        const originalMethod = descriptor.value;
-        descriptor.value = function loggerWrapper() {
-            console.log(Date.now() / 1000 | 0, 'Log event in', category, 'body', arguments[0].body);
-            originalMethod.apply(this, arguments);
-        };
-        return descriptor;
-    };
-};
-```
+Сам репозиторий реализован в файле src/lib/repository.ts
 
-Подключили его к нашему POST обработчику
-```typescript
-@logger('home')
-public postHandler() {
-```
-И теперь при каждом обращении к этому методу мы получаем информацию в консоли
-```
-1593779698 Log event in home body { data: 'test' }
-```
+`export class Repository<T> {`
+
+Как раз <T> отвечает за создание "условного типа". Другими словами - мы можем подставлять в репозиторий любой тип, который потом будет требоваться во время использования данного репозитория.
+
+В текущем примере мы сделали тип Book (файл src/models/book.ts) с обычными полями.
+
+Внутри файла src/index.ts показано как можно работать с этим репозиторием. Что примечательно - благодаря дженерикам мы можем использовать любой тип, интерфейс или класс для наполнения репозитория, что делает этот код типизированным, но типонезависимым одновременно.

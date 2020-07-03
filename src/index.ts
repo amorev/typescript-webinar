@@ -1,16 +1,18 @@
-import App from './app/app';
-import * as bodyParser from 'body-parser';
-import HomeController from './controllers/HomeController';
+import { Repository } from './lib/repository';
+import { Book } from './models/book';
 
-const app = new App({
-    port: 3000,
-    routes: [
-        new HomeController()
-    ],
-    middleWares: [
-        bodyParser.json(),
-        bodyParser.urlencoded({extended: true})
-    ]
+const index = new Repository<Book>();
+index.add({
+    author: "Anton",
+    title: "Awesome typescript"
 });
+index.add({
+    author: "Ivan",
+    title: "Awesome php"
+});
+console.log('current entities', index.entities); //Добавили элемент в репозиторий
+const book = index.find('author', 'Anton');
+console.log('found', book);
 
-app.listen();
+index.delete('author', 'Ivan');
+console.log('current entities after delete', index.entities); //Добавили элемент в репозиторий
