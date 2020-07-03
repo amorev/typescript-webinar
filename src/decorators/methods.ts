@@ -23,5 +23,16 @@ function httpMethodDecorator(method: string) {
     };
 }
 
+export function logger(category: string) {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        const originalMethod = descriptor.value;
+        descriptor.value = function loggerWrapper() {
+            console.log(Date.now() / 1000 | 0, 'Log event in', category, 'body', arguments[0].body);
+            originalMethod.apply(this, arguments);
+        };
+        return descriptor;
+    };
+};
+
 export const get = httpMethodDecorator('get');
 export const post = httpMethodDecorator('post');

@@ -1,5 +1,5 @@
 import { BaseController } from './BaseController';
-import { get, post } from '../decorators/methods';
+import { get, logger, post } from '../decorators/methods';
 import { RouterController } from '../decorators/controller';
 
 @RouterController('/')
@@ -23,6 +23,7 @@ class HomeController extends BaseController {
     }
 
     @post('/post')
+    @logger('home')
     public postHandler() {
         return {
             post: true

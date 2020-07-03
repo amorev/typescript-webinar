@@ -40,5 +40,27 @@ npm run dev
 
 ### Что происходит в данном примере
 
-Теперь мы добавили декораторы в класс контроллера. Для того, чтобы указать по какому пути нам нужен контроллер мы можем сделать следующее
+На этом этапе мы создали простой декоратор для логгирования. 
 
+```typescript
+export function logger(category: string) {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        const originalMethod = descriptor.value;
+        descriptor.value = function loggerWrapper() {
+            console.log(Date.now() / 1000 | 0, 'Log event in', category, 'body', arguments[0].body);
+            originalMethod.apply(this, arguments);
+        };
+        return descriptor;
+    };
+};
+```
+
+Подключили его к нашему POST обработчику
+```typescript
+@logger('home')
+public postHandler() {
+```
+И теперь при каждом обращении к этому методу мы получаем информацию в консоли
+```
+1593779698 Log event in home body { data: 'test' }
+```
