@@ -1,16 +1,17 @@
 import express from 'express';
 import { Application } from 'express';
+import { ServiceInterface } from '../lib/service';
 
 class App {
     public app: Application;
     public port: number;
 
-    constructor(appInit: { port: number; middleWares: any; routes: any; }) {
+    constructor(appInit: { port: number; middleWares: any; service: ServiceInterface; }) {
         this.app = express();
         this.port = appInit.port;
 
         this.middlewares(appInit.middleWares);
-        this.routes(appInit.routes);
+        this.routes(appInit.service.getRoutes());
     }
 
     private middlewares(middleWares: { forEach: (arg0: (middleWare: any) => void) => void; }) {

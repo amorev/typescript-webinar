@@ -1,0 +1,15 @@
+POST http://localhost:3000/money/sendMoney
+Content-Type: application/json
+
+{
+  "address": "123123",
+  "amount": 100
+}
+
+###
+GET http://localhost:3000/money
+
+Accept: application/json
+
+###
+

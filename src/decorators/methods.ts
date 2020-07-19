@@ -1,7 +1,7 @@
 import { BaseController } from '../controllers/BaseController';
 
 function httpMethodDecorator(method: string) {
-    return function (route: string) {
+    return function (route?: string) {
         return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
             if (!(target instanceof BaseController)) {
                 throw `Class ${target.constructor.name} should extend class BaseController!`;
@@ -10,10 +10,9 @@ function httpMethodDecorator(method: string) {
             if (!constructor.routes) {
                 constructor.routes = [];
             }
-            console.log('constructor');
             constructor.routes.push({
                 method: method,
-                path: route,
+                path: route || '/' + propertyKey,
                 handler: (req, res) => {
                     res.json(descriptor.value(req, res));
                 }
@@ -23,12 +22,12 @@ function httpMethodDecorator(method: string) {
     };
 }
 
-export function logger(category: string) {
+export function logger(category: string = 'main') {
     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
         const originalMethod = descriptor.value;
         descriptor.value = function loggerWrapper() {
             console.log(Date.now() / 1000 | 0, 'Log event in', category, 'body', arguments[0].body);
-            originalMethod.apply(this, arguments);
+            return originalMethod.apply(this, arguments);
         };
         return descriptor;
     };
