@@ -12,15 +12,14 @@ export class MoneyController extends BaseController {
         };
     }
 
-    @post()
+    @post('/send')
     @logger()
-    public sendMoney(req) {
-        const body: SendRequest = <SendRequest>req.body;
+    public sendMoney(req): SendResponse {
+        const body: SendRequest = req.body;
         console.log(body);
         // do something with sendMoneyOrder
-        const response: SendResponse = {
+        return {
             transactionId: 123123
         };
-        return response;
     }
 }

@@ -24,6 +24,7 @@
   "devDependencies": {
     "@types/node": "14.0.10",
     "nodemon": "2.0.4",
+    "swagger-ts-generator": "1.2.11",
     "ts-node": "8.10.2"
   }
 }
