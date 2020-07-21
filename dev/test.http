@@ -1,5 +1,6 @@
-POST http://localhost:3000/money/sendMoney
+POST http://localhost:3000/money/send
 Content-Type: application/json
+token: 123123
 
 {
   "address": "123123",

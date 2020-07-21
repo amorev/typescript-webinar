@@ -2,6 +2,7 @@ import { RouterController } from '../../../../decorators/controller';
 import { BaseController } from '../../../../controllers/BaseController';
 import { get, logger, post } from '../../../../decorators/methods';
 import { SendRequest, SendResponse } from '../models/send';
+import { AuthServiceHandler } from '../../../connectors/AuthConnector';
 
 @RouterController('/money')
 export class MoneyController extends BaseController {
@@ -14,9 +15,14 @@ export class MoneyController extends BaseController {
 
     @post('/send')
     @logger()
-    public sendMoney(req): SendResponse {
+    public async sendMoney(req): Promise<SendResponse> {
+        const token = req.headers.token;
+        const checkResult = await AuthServiceHandler.getInstance().validateToken(token);
+        if (!checkResult) {
+            throw new Error("Wrong token");
+        }
         const body: SendRequest = req.body;
-        console.log(body);
+        console.log('doing something', body);
         // do something with sendMoneyOrder
         return {
             transactionId: 123123
