@@ -1,0 +1,18 @@
+POST {{url}}/check
+Content-Type: application/json
+
+{
+  "type": "check200",
+  "url": "https://ya.ru",
+  "data": "unknown"
+}
+
+###
+GET {{url}}/status
+
+###
+
+GET {{url}}/form
+
+###
+
