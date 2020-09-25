@@ -4,15 +4,15 @@
     "target": "es6",
     "module": "commonjs",
     "removeComments": true,
-    "sourceMap": true,
-    "allowJs": true,
+    "sourceMap": false,
     "esModuleInterop": true,
-    "strict": false,
-    "outDir": "dist",
+    "strict": true,
+    "rootDir": "./ts",
+    "outDir": "./src",
     "noUnusedLocals": true
   },
   "include": [
-    "src/**/*"
+    "./ts/**/*"
   ],
   "exclude": [
     "node_modules",

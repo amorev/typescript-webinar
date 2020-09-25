@@ -2,7 +2,7 @@ POST {{url}}/check
 Content-Type: application/json
 
 {
-  "type": "check200",
+  "type": "checkNew",
   "url": "https://ya.ru",
   "data": "unknown"
 }
