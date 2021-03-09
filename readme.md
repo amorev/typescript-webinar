@@ -44,5 +44,5 @@ npm run dev
 
 Для запуска проекта достаточно сделать 
 ```bash
-node src/index.js
+node src/index.ts
 ```
