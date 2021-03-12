@@ -33,6 +33,16 @@ class Repository<T> {
             this.elements.splice(index, 1);
         }
     }
+
+    updateElement<K extends keyof T>(key: K, value: T[K], newValue: Partial<T>): void {
+        const index = this.elements.findIndex(e => e[key] === value);
+        if (index !== -1) {
+            this.elements[index] = {
+                ...this.elements[index],
+                ...newValue
+            };
+        }
+    }
 }
 
 const bookRepository = new Repository<Book>();
@@ -44,13 +54,7 @@ bookRepository.addElement({
     title: "Not Best book about typescript",
     author: "Not Anton Morev"
 });
-console.log(bookRepository.getElements(), 'before delete');
-bookRepository.deleteElement('author', "Best book about typescript");
-bookRepository.findElement('author', 'asd')
-console.log(bookRepository.getElements(), 'after delete');
-
-const authorRepository = new Repository<Author>();
-authorRepository.addElement({
-    name: 'asdasd'
+bookRepository.updateElement('title', "Best book about typescript", {
+    author: "Max Ram"
 });
-authorRepository.findElement('name', 'asdads')
+console.log(bookRepository.getElements());
