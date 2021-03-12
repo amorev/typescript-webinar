@@ -15,6 +15,7 @@
   "author": "Anton Morev",
   "license": "ISC",
   "dependencies": {
+    "axios": "0.21.1",
     "typescript": "3.9.3"
   },
   "devDependencies": {

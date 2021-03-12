@@ -1,9 +1,18 @@
-import { Fetcher } from './lib/fetcher';
+import { CheckersFabric, CheckerType } from './lib/checkers';
 
-const fetcher = new Fetcher();
-console.log('Script started');
-const people = fetcher.fetchPeople();
-people.forEach(el => {
-    console.log('name is ', el.name);
-    console.log('city is ', fetcher.fetchCityById(el.city_id).title);
+const checker200 = CheckersFabric.GetChecker(CheckerType.check200);
+CheckersFabric.GetChecker(CheckerType.check200);
+CheckersFabric.GetChecker(CheckerType.check200);
+CheckersFabric.GetChecker(CheckerType.check200);
+CheckersFabric.GetChecker(CheckerType.check200);
+CheckersFabric.GetChecker(CheckerType.check200);
+CheckersFabric.GetChecker(CheckerType.check200);
+const checkHtml = CheckersFabric.GetChecker(CheckerType.checkHtml);
+
+checker200.check({
+    url: "https://ya.ru",
+});
+checkHtml.check({
+    url: "https://ya.ru",
+    data: "123123"
 });
