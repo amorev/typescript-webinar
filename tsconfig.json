@@ -4,6 +4,7 @@
     "target": "es6",
     "module": "commonjs",
     "removeComments": true,
+    "experimentalDecorators": true,
     "sourceMap": true,
     "allowJs": true,
     "esModuleInterop": true,

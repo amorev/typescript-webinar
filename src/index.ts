@@ -1,21 +1,33 @@
-type Book = {
-    title: string,
-    author: string,
-    pagesSize?: number,
+
+const LOGS_ENABLE = false;
+function loggerDecorator() {
+    return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
+        const oldDescriptor = descriptor.value;
+        descriptor.value = function () {
+            LOGS_ENABLE && console.log(arguments);
+            return oldDescriptor.apply(this, arguments);
+        };
+        return descriptor;
+    };
 }
 
-type BookWithoutPageSize = {
-    title: string,
-    author: string,
+function div(a,b) {
+    return a/b
 }
 
-type Created = Book | null | undefined;
+class Mathematics {
+    @loggerDecorator()
+    sum(a, b) {
+        return a + b;
+    }
 
-function giveBook(): NonNullable<Created> {
-    return undefined;
+    @loggerDecorator()
+    minus(a, b) {
+        return a - b;
+    }
 }
 
-const book = giveBook();
-console.log(book);
+const c = new Mathematics();
 
-const B: NonNullable<Book> = null;
+console.log(c.sum(1, 3));
+console.log(c.minus(1, 3));
