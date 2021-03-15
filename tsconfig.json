@@ -5,9 +5,10 @@
     "module": "commonjs",
     "removeComments": true,
     "sourceMap": true,
-    "allowJs": true,
+    "allowJs": false,
     "esModuleInterop": true,
-    "strict": false,
+    "declaration": true,
+    "strict": true,
     "outDir": "dist",
     "noUnusedLocals": true
   },

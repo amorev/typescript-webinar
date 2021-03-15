@@ -1,9 +1,24 @@
-import { Fetcher } from './lib/fetcher';
+import { check } from './lib/checker';
 
-const fetcher = new Fetcher();
-console.log('Script started');
-const people = fetcher.fetchPeople();
-people.forEach(el => {
-    console.log('name is ', el.name);
-    console.log('city is ', fetcher.fetchCityById(el.city_id).title);
-});
+const url = "https://ya.ru";
+
+async function run() {
+    const result200 = await check({
+        url,
+    }, "200");
+    const result = await check({
+        url,
+        data: "browser"
+    }, "html");
+    const resultWeather = await check({
+        url,
+        neededDegree: 10
+    }, "weather");
+    console.log({
+        result,
+        result200,
+        resultWeather
+    });
+}
+
+run();
