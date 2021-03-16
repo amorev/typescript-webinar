@@ -1,34 +1,27 @@
-type User = {
+import { UsersDatabase } from '../database/users';
+
+export type User = {
     name: string,
     id: number
 }
 
 export class UserModel {
-    public users: User[] = [
-        {
-            id: 1,
-            name: "anton"
-        }
-    ];
+    constructor(private usersDatabase: UsersDatabase) {
+    }
 
     public async get(id: number): Promise<User> {
-        return this.users.find(u => u.id === id);
+        return this.usersDatabase.get(id);
     }
 
     public async create(userInfo: User): Promise<User> {
-        this.users.push(userInfo);
-        return userInfo;
+        return this.usersDatabase.create(userInfo);
     }
 
     public async delete(id: number): Promise<boolean> {
-        const index = this.users.findIndex(u => u.id === id);
-        if (index !== -1) {
-            this.users.splice(index, 1);
-        }
-        return true;
+        return this.usersDatabase.delete(id);
     }
 
     public async getAll(): Promise<User[]> {
-        return this.users;
+        return this.usersDatabase.getAll();
     }
 }

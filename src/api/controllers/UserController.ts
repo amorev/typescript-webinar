@@ -5,13 +5,14 @@ import { post, get, del } from '../decorators/http';
 import { Route } from '../lib/types';
 import { UserModel } from '../models/user';
 import { getUserModel } from '../helpers/user';
+import { logger } from '../decorators/logger';
 
 export class UserController {
     public router = Router();
 
     private userModel: UserModel;
 
-    public constructor(userModel: UserModel) {
+    public constructor() {
         const constructor: any = this.constructor;
         const routes: Route[] = constructor.routes;
         routes.forEach(route => {
@@ -20,8 +21,6 @@ export class UserController {
         this.router.delete('/:id', (req, res) => {
             res.send(this.deleteUserAction(req.params.id));
         });
-        this.userModel = userModel;
-        console.log(userModel);
     }
 
     @post('/')
@@ -40,6 +39,7 @@ export class UserController {
         return await getUserModel().get(req.params.id)
     }
 
+    @logger('users.get')
     @get('/')
     async getAllUsersAction() {
         let users = await getUserModel().getAll();
