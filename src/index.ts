@@ -1,8 +1,16 @@
-import { Handler } from './somelib';
-import { DeepDependency } from './test/deep/Dependency';
+import { UserController } from './api/controllers/UserController';
+import { BooksController } from './api/controllers/BooksController';
+import * as bodyParser from 'body-parser';
+import { UserModel } from './api/models/user';
 
-const handler = new Handler();
-handler.sayMyName();
+const express = require('express');
+const app = express();
+const port = 3000;
 
-const depDep = new DeepDependency('NameDep')
-depDep.sayYourName();
+// CRUD users
+app.use(bodyParser.json())
+app.use('/users', (new UserController(new UserModel())).router);
+
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+});
