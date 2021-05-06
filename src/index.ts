@@ -1,8 +1,13 @@
-const fetcher = require('./lib/fetcher')
+import { fetch, People } from './lib/fetcher';
 
-console.log('Script started')
-const people = fetcher.fetchPeople()
-people.forEach(el => {
-  console.log('name is ', el.name)
-  console.log('city is ', fetcher.fetchCityById(el.city_id).title)
+function handlePeople (people: People) {
+    console.log(people.name);
+}
+
+fetch().then(d => {
+    d.forEach(people => {
+        handlePeople(people);
+    })
+    console.log(d);
 })
+
