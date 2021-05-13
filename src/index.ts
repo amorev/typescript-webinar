@@ -1,14 +1,11 @@
 import axios from 'axios';
+import { Check200 } from './lib/checker';
 
-const url = 'https://ya.ru';
-axios.get(url)
-    .then(r => {
-        if (r.status === 200) {
-            console.log('success');
-        } else {
-            console.log('error');
-        }
-    })
-    .catch(e => {
-        console.log('error');
+(async () => {
+    const c = new Check200();
+    const result = await c.check({
+        url: 'https://ysadasa.ru'
     });
+    console.log(result);
+})();
+
