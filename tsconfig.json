@@ -3,7 +3,8 @@
     "module": "commonjs",
     "allowJs": true,
     "outDir": "dist",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "experimentalDecorators": true
   },
   "include": [
     "src/**/*"
