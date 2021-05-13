@@ -50,3 +50,5 @@ c.addElement({
 console.log(c.getElements());
 console.log(c.getElement('author', 'anton Morev'));
 console.log(c.getElement('year', 2021));
+const a = new Repository<Author>()
+a.addElement({city: 'moscow', name: 'anton'})
