@@ -19,7 +19,7 @@ export class CheckersFabric {
         let handler = null;
         switch (type) {
             case '200':
-                handler = new Check200();
+                handler = new Check200("something wrong");
                 break;
             case 'html':
                 handler = new CheckHtml();

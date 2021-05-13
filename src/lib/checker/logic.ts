@@ -2,6 +2,9 @@ import axios from 'axios';
 import { CheckerInterface, CheckParams, CheckResult } from '../checker';
 
 export class Check200 implements CheckerInterface {
+    constructor(private errorMessage: string) {
+    }
+
     async check(config: CheckParams): Promise<CheckResult> {
         try {
             const result = await axios.get(config.url);
@@ -13,7 +16,7 @@ export class Check200 implements CheckerInterface {
         } catch (e) {
             return {
                 success: false,
-                info: e
+                info: this.errorMessage
             };
         }
     }
