@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { Check200 } from './lib/checker';
+import { CheckersFabric } from './lib/checker';
 
 (async () => {
-    const c = new Check200();
+    const fabric = new CheckersFabric()
+    const c = fabric.getChecker('size')
     const result = await c.check({
-        url: 'https://ysadasa.ru'
+        url: 'https://ya.ru',
     });
-    console.log(result);
+    console.log(c);
 })();
 
