@@ -1,8 +1,14 @@
-/// <reference path="lib/fetcher.interfaces.ts" />
-/// <reference path="lib/fetcher.ts" />
+import axios from 'axios';
 
-import { FetcherNamespace } from './lib/fetcher';
-import Fetcher = FetcherNamespace.Fetcher;
-
-const c = new Fetcher();
-console.log(c.fetch());
+const url = 'https://ya.ru';
+axios.get(url)
+    .then(r => {
+        if (r.status === 200) {
+            console.log('success');
+        } else {
+            console.log('error');
+        }
+    })
+    .catch(e => {
+        console.log('error');
+    });
