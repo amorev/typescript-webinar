@@ -9,6 +9,9 @@ type Author = {
     city: string
 }
 
+// console.log(a);
+
+
 class Repository<T> {
     private _elements: T[] = [];
 
@@ -30,25 +33,22 @@ class Repository<T> {
             this._elements.splice(index, 1);
         }
     }
+
+    public updateElement<K extends keyof T>(key: K, value: T[K], newValue: Partial<T>) {
+        const index = this._elements.findIndex(e => e[key] === value);
+        if (index !== -1) {
+            this._elements[index] = {
+                ...this._elements[index],
+                ...newValue
+            };
+        }
+    }
 }
 
-class BookRepository extends Repository<Book> {
-
-}
-
-const c = new BookRepository();
-c.addElement({
-    author: "anton Morev",
-    title: "The best book about typescript",
-    year: 2021
-});
-c.addElement({
-    author: "SomebodyMore",
-    title: "Not the best book about typescript",
-    year: 2011
-});
-console.log(c.getElements());
-console.log(c.getElement('author', 'anton Morev'));
-console.log(c.getElement('year', 2021));
-const a = new Repository<Author>()
-a.addElement({city: 'moscow', name: 'anton'})
+const b = new Repository<Author>();
+b.addElement({name: 'anton', city: 'moscow'});
+console.log(b.getElements());
+b.updateElement('name', 'anton', {
+    name: 'ivan'
+})
+console.log(b.getElements());
