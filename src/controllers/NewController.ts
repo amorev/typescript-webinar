@@ -1,16 +1,16 @@
 import { Request, Response } from 'express';
 import { BaseController } from './BaseController';
 
-export class CheckerController extends BaseController {
-    public path = '/checker';
+export class NewController extends BaseController {
+    public path = '/new';
 
     public initRoutes() {
-        this.router.get('/200', (req, res) => {
+        this.router.get('/sth', (req, res) => {
             return this.check(req, res);
         });
     }
 
     public check(req: Request, res: Response) {
-        res.json(123);
+        res.json(321);
     }
 }

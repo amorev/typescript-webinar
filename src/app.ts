@@ -1,6 +1,7 @@
 import { Application } from 'express';
 import express from 'express';
 import { CheckerController } from './controllers/CheckerController';
+import { BaseController } from './controllers/BaseController';
 
 export class App {
     public app: Application;
@@ -14,7 +15,7 @@ export class App {
         this.routes(appInit.routes);
     }
 
-    public routes(controllers: [CheckerController]) {
+    public routes(controllers: [BaseController]) {
         controllers.forEach(controller => {
             controller.initRoutes();
             this.app.use(controller.path, controller.router);

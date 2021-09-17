@@ -1,11 +1,13 @@
 import { App } from './app';
 import { CheckerController } from './controllers/CheckerController';
+import { NewController } from './controllers/NewController';
 
 async function run() {
     const Application = new App({
         port: 3000,
         routes: [
-            new CheckerController()
+            new CheckerController(),
+            new NewController()
         ]
     });
     Application.listen();
