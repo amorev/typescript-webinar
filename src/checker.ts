@@ -14,7 +14,17 @@ export interface Checker {
     checkSite(checkInfo: CheckInfo): Promise<CheckResult>;
 }
 
-export class Check200 implements Checker {
+export class CheckersFabric {
+    public static getChecker(type: '200' | 'html'): Checker {
+        let checker = new Check200()
+        if (type === 'html') {
+            checker = new CheckHtml();
+        }
+        return checker;
+    }
+}
+
+class Check200 implements Checker {
     async checkSite(checkInfo: CheckInfo): Promise<CheckResult> {
         const result: CheckResult = {
             success: false
@@ -30,7 +40,7 @@ export class Check200 implements Checker {
     }
 }
 
-export class CheckHtml implements Checker {
+class CheckHtml implements Checker {
     async checkSite(checkInfo: CheckInfo): Promise<CheckResult> {
         const result: CheckResult = {
             success: false
