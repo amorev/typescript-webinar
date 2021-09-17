@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
 type CheckInfo = {
     url: string,
@@ -16,9 +16,13 @@ export interface Checker {
 
 export class CheckersFabric {
     public static getChecker(type: '200' | 'html'): Checker {
-        let checker = new Check200()
+        let checker = new Check200();
         if (type === 'html') {
-            checker = new CheckHtml();
+            checker = new CheckHtml(axios.create({
+                headers: {
+                    'custom-header': 'awdas'
+                }
+            }));
         }
         return checker;
     }
@@ -41,12 +45,17 @@ class Check200 implements Checker {
 }
 
 class CheckHtml implements Checker {
+    constructor(
+        private axiosInstance: AxiosInstance
+    ) {
+    }
+
     async checkSite(checkInfo: CheckInfo): Promise<CheckResult> {
         const result: CheckResult = {
             success: false
         };
         try {
-            const data = await axios.get(checkInfo.url);
+            const data = await this.axiosInstance.get(checkInfo.url);
             result.success = data.data.indexOf(checkInfo.checkData) !== -1;
         } catch (e) {
             result.success = false;
