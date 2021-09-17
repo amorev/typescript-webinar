@@ -1,22 +1,13 @@
 import axios from 'axios';
-
-async function checkSite(url, type: '200' | 'html' = '200', needHtml?: string): Promise<boolean> {
-    try {
-        const data = await axios.get(url);
-        if (type === '200')
-        return data.status === 200;
-        else if (type === 'html') {
-            return data.data.indexOf(needHtml) !== -1
-        }
-    } catch (e) {
-        return false;
-    }
-}
+import { Check200, CheckHtml } from './checker';
 
 async function run() {
     let url = 'https://ya.ru';
-    const result = await checkSite(url, 'html', 'ua_browser_dfdsfesktop ');
-    console.log(result);
+    const checker200 = new Check200();
+    const checkerHtml = new CheckHtml();
+    const result = await checker200.checkSite({url});
+    const resultHtml = await checkerHtml.checkSite({url, checkData: "browser"});
+    console.log({ result, resultHtml });
 }
 
 run();
