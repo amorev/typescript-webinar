@@ -1,16 +1,17 @@
 import { Request, Response } from 'express';
 import { BaseController } from './BaseController';
+import { get, post } from '../decorators/http';
 
 export class NewController extends BaseController {
     public path = '/new';
 
-    public initRoutes() {
-        this.router.get('/sth', (req, res) => {
-            return this.check(req, res);
-        });
+    @get('/check')
+    public check() {
+        return 321;
     }
 
-    public check(req: Request, res: Response) {
-        res.json(321);
+    @post('/post')
+    public post() {
+        return 'post'
     }
 }

@@ -5,5 +5,11 @@ export abstract class BaseController {
 
     public router = express.Router();
 
-    abstract initRoutes();
+    public initRoutes() {
+        const constructorRoutes = (<any>this.constructor).routes;
+        console.log({constructorRoutes});
+        constructorRoutes.forEach(route => {
+            this.router[route.method](route.path, (req, res) => route.handler(req, res));
+        });
+    }
 }
